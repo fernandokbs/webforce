@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->admin;
     }
+
+    public function scopeNormalUser($query)
+    {
+        return $query->where('admin', false);
+    }
 }

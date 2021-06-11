@@ -11,6 +11,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        ProductResource::withoutWrapping();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +23,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-        ProductResource::withoutWrapping();
         return ProductResource::collection(Product::paginate());
     }
 
@@ -30,7 +34,6 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        ProductResource::withoutWrapping();
         return (new ProductResource( Product::create($request->all()) ))
                 ->response()
                 ->setStatusCode(Response::HTTP_CREATED);
@@ -44,7 +47,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        ProductResource::withoutWrapping();
         return new ProductResource($product);
     }
 
