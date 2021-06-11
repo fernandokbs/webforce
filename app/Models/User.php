@@ -17,10 +17,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name','email',
+        'password','admin'
     ];
+
+    protected $casts = ['admin' => 'boolean'];
 
     /**
      * The attributes that should be hidden for arrays.
