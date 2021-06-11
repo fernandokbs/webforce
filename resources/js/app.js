@@ -2,11 +2,16 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
-import ExampleComponent from './components/ExampleComponent';
+import Vue from 'vue';
+import Vuetify from 'vuetify'
+import App from './components/App';
+
+Vue.use(Vuetify)
 
 const app = new Vue({
     el: '#app',
     components: {
-        ExampleComponent
-    }
+        App
+    },
+    vuetify : new Vuetify()
 });
