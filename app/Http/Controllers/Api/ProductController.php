@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
 {
@@ -26,9 +28,12 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        ProductResource::withoutWrapping();
+        return (new ProductResource( Product::create($request->all()) ))
+                ->response()
+                ->setStatusCode(Response::HTTP_CREATED);
     }
 
     /**
@@ -50,9 +55,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+        $product->update($request->all());
+        return (new ProductResource( Product::find($product->id) ))
+                ->response()
+                ->setStatusCode(Response::HTTP_OK);
     }
 
     /**
@@ -63,6 +71,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return response([], Response::HTTP_NO_CONTENT);
     }
 }

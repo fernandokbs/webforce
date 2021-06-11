@@ -10,14 +10,14 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug','description', 'status'];
+    protected $fillable = ['name', 'slug','description', 'price', 'status'];
     protected $casts = [ 'status' => 'boolean' ];
 
     protected static function booted()
-    {
-        static::creating(function ($product) {
+    { 
+        static::saving(function($product) {
             $slug = Str::slug($product->name, '-');
             $product->slug = Product::where('slug', $slug)->exists() ? ($slug . uniqid()) : $slug;
-        });
+        }); 
     }
 }
