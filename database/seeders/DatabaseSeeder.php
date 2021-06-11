@@ -18,10 +18,17 @@ class DatabaseSeeder extends Seeder
         if(User::count() == 0)
         {
             User::factory()->create([
-                'name' => 'WebForce',
-                'email' => 'testroot@gmail.com',
+                'name' => 'WebForceAdmin',
+                'email' => 'admin@gmail.com',
                 'password' => bcrypt('testroot'),
                 'admin' => true
+            ]);
+
+            User::factory()->create([
+                'name' => 'WebForceClient',
+                'email' => 'client@gmail.com',
+                'password' => bcrypt('testroot'),
+                'admin' => false
             ]);
         }
         
