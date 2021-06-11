@@ -21,7 +21,6 @@ class User extends Authenticatable
         'password','admin'
     ];
 
-    protected $casts = ['admin' => 'boolean'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -40,5 +39,14 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'admin' => 'boolean'
     ];
+
+    /**
+     * Returns true if the user is admin
+     */
+    public function isAdmin()
+    {
+        return $this->admin;
+    }
 }
