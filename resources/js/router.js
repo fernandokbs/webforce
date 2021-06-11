@@ -3,12 +3,12 @@ import VueRouter from 'vue-router'
 
 // Import components
 
-import Foo from './components/pages/Foo';
+import Home from './components/pages/Home';
 
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', component: Foo }
+  { path: '/', component: Home }
 ];
 
 const router = new VueRouter({
