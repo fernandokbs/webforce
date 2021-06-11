@@ -1,5 +1,12 @@
 <template>
-  <div>
-    <h2>Main Component</h2>
-  </div>
+    <v-main>
+      <router-view></router-view>
+    </v-main>
 </template>
+
+<script>
+
+export default({
+
+})
+</script>
