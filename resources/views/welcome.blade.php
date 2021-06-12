@@ -9,9 +9,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     </head>
     <body class="container">
-        <v-app id="app">
+        <div id="app">
             <app></app>
-        </v-app>
+        </div>
         <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
