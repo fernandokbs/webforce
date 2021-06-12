@@ -1924,7 +1924,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       _request__WEBPACK_IMPORTED_MODULE_0__.default.post('/api/login', this.form).then(function (response) {
-        console.log(response);
+        localStorage.setItem('access_token', response.data.token);
+
+        _this.$router.push({
+          name: "home"
+        });
       })["catch"](function (e) {
         if (e.response.status === 422) _this.getErrors(e.response.data.errors);
       });
