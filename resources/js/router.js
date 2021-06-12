@@ -10,9 +10,9 @@ import Register from './components/pages/auth/Register';
 
 const routes = [
   // Auth components
-  { path: '/login', component: Login },
-  { path: '/register', component: Register },
-  { path: '/', component: Home },
+  { path: '/login', component: Login, name: 'login' },
+  { path: '/register', component: Register, name: 'register' },
+  { path: '/', component: Home, name: 'home' },
 ];
 
 const router = new VueRouter({

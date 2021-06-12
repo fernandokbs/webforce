@@ -2094,13 +2094,16 @@ vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vue_router__WEBPACK_IMPORTED_MODULE
 var routes = [// Auth components
 {
   path: '/login',
-  component: _components_pages_auth_Login__WEBPACK_IMPORTED_MODULE_3__.default
+  component: _components_pages_auth_Login__WEBPACK_IMPORTED_MODULE_3__.default,
+  name: 'login'
 }, {
   path: '/register',
-  component: _components_pages_auth_Register__WEBPACK_IMPORTED_MODULE_4__.default
+  component: _components_pages_auth_Register__WEBPACK_IMPORTED_MODULE_4__.default,
+  name: 'register'
 }, {
   path: '/',
-  component: _components_pages_Home__WEBPACK_IMPORTED_MODULE_2__.default
+  component: _components_pages_Home__WEBPACK_IMPORTED_MODULE_2__.default,
+  name: 'home'
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__.default({
   mode: 'history',
@@ -37917,7 +37920,63 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "nav",
+    { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
+    [
+      _c("div", { staticClass: "container-fluid" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "collapse navbar-collapse d-flex justify-content-between",
+            attrs: { id: "navbarTogglerDemo01" }
+          },
+          [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", [
+              _c("ul", { staticClass: "navbar-nav me-auto mb-2 mb-lg-0" }, [
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link active",
+                        attrs: { to: { name: "login" } }
+                      },
+                      [_vm._v("Login")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link active",
+                        attrs: { to: { name: "register" } }
+                      },
+                      [_vm._v("Register")]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ]
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -37925,95 +37984,30 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "nav",
-      { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
-      [
-        _c("div", { staticClass: "container-fluid" }, [
-          _c(
-            "button",
-            {
-              staticClass: "navbar-toggler",
-              attrs: {
-                type: "button",
-                "data-bs-toggle": "collapse",
-                "data-bs-target": "#navbarTogglerDemo01",
-                "aria-controls": "navbarTogglerDemo01",
-                "aria-expanded": "false",
-                "aria-label": "Toggle navigation"
-              }
-            },
-            [_c("span", { staticClass: "navbar-toggler-icon" })]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "collapse navbar-collapse",
-              attrs: { id: "navbarTogglerDemo01" }
-            },
-            [
-              _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-                _vm._v("Hidden brand")
-              ]),
-              _vm._v(" "),
-              _c("ul", { staticClass: "navbar-nav me-auto mb-2 mb-lg-0" }, [
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link active",
-                      attrs: { "aria-current": "page", href: "#" }
-                    },
-                    [_vm._v("Home")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                    _vm._v("Link")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link disabled",
-                      attrs: {
-                        href: "#",
-                        tabindex: "-1",
-                        "aria-disabled": "true"
-                      }
-                    },
-                    [_vm._v("Disabled")]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("form", { staticClass: "d-flex" }, [
-                _c("input", {
-                  staticClass: "form-control me-2",
-                  attrs: {
-                    type: "search",
-                    placeholder: "Search",
-                    "aria-label": "Search"
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-success",
-                    attrs: { type: "submit" }
-                  },
-                  [_vm._v("Search")]
-                )
-              ])
-            ]
-          )
-        ])
-      ]
+      "button",
+      {
+        staticClass: "navbar-toggler",
+        attrs: {
+          type: "button",
+          "data-bs-toggle": "collapse",
+          "data-bs-target": "#navbarTogglerDemo01",
+          "aria-controls": "navbarTogglerDemo01",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation"
+        }
+      },
+      [_c("span", { staticClass: "navbar-toggler-icon" })]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
+        _vm._v("WebForce HQ")
+      ])
+    ])
   }
 ]
 render._withStripped = true
