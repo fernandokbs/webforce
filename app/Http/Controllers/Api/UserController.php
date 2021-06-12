@@ -10,6 +10,7 @@ use App\Models\User;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
