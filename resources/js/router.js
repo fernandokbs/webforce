@@ -16,12 +16,16 @@ import ProductIndex from './components/pages/admin/products/Index';
 // Client routes
 import ClientHome from './components/pages/client/Home';
 
+// Checkout
+import Checkout from './components/pages/Checkout';
+
 const routes = [
   // Auth components
   { path: '/login', component: Login, name: 'login' },
   { path: '/register', component: Register, name: 'register' },
   { path: '/', component: Home, name: 'home' },
   { path: '/:slug', component: ProductShow, name: 'product.show' },
+  { path: '/checkout', component: Checkout, name: 'checkout' },
 
   {
     path: '/admin',

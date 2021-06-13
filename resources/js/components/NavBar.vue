@@ -19,6 +19,8 @@
                 </li>
               </template>
 
+              <cart></cart>
+
               <li v-if="isAuthenticated" class="nav-item">
                 <a @click="logout" href="#" class="nav-link active">Logout</a>
               </li>
@@ -30,24 +32,32 @@
 </template>
 <script>
 
+import Cart from './Cart.vue';
+
 export default ({
+  components: {
+    Cart
+  },
   data() {
     return {
       
     }
   },
+  created() {
+    console.log(this.$store.getters['cart/getProducts']);
+  },  
   methods: {
     logout() {
       localStorage.removeItem('access_token');
-      this.$store.dispatch('logout');
+      this.$store.dispatch('auth/logout');
       this.$router.push({ name: "login" });
     }
   },
 
   computed: {
     isAuthenticated() {
-      return this.$store.getters.isAuthenticated;
-    }
+      return this.$store.getters['auth/isAuthenticated'];
+    },
   }
 })
 </script>

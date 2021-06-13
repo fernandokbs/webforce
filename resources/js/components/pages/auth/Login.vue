@@ -55,7 +55,7 @@ export default({
           let user = response.data.user;
           localStorage.setItem('access_token', token);
           localStorage.setItem('access_token', user);
-          this.$store.dispatch('login', token, user);
+          this.$store.dispatch('auth/login', token, user);
           this.$router.push({ name: "home" });
         }).catch((e) => {
           console.log(e);
