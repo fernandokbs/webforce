@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const axiosRequest = axios.create({});
+const axiosRequest = axios.create({
+    baseURL: '/api/'
+});
 
 axiosRequest.interceptors.request.use(
     (config) => {
