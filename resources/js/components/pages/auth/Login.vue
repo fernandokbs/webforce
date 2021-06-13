@@ -51,7 +51,9 @@ export default({
     login() {
       axios.post('/api/login', this.form)
         .then((response) => {
-          localStorage.setItem('access_token', response.data.token);
+          let token = response.data.token
+          localStorage.setItem('access_token', token);
+          this.$store.dispatch('login', token);
           this.$router.push({ name: "home" });
         }).catch((e) => {
           if(e.response.status === 422)

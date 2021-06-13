@@ -10,11 +10,17 @@
           </div>
           <div>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <router-link :to="{ name: 'login' }" class="nav-link active">Login</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link :to="{ name: 'register' }" class="nav-link active">Register</router-link>
+              <template v-if="!isAuthenticated">
+                <li class="nav-item">
+                  <router-link :to="{ name: 'login' }" class="nav-link active">Login</router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link :to="{ name: 'register' }" class="nav-link active">Register</router-link>
+                </li>
+              </template>
+
+              <li v-if="isAuthenticated" class="nav-item">
+                <a @click="logout" href="#" class="nav-link active">Logout</a>
               </li>
             </ul>
           </div>
@@ -22,3 +28,26 @@
     </div>
   </nav>
 </template>
+<script>
+
+export default ({
+  data() {
+    return {
+      
+    }
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem('access_token');
+      this.$store.dispatch('logout');
+      this.$router.push({ name: "login" });
+    }
+  },
+
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated;
+    }
+  }
+})
+</script>
