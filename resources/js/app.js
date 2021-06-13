@@ -7,6 +7,10 @@ import App from './components/App';
 import router from './router';
 import store from './store/store';
 
+router.beforeEach(async (to, from, next) => {
+    next();
+});
+
 const app = new Vue({
     el: '#app',
     components: {

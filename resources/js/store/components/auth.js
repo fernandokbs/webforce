@@ -1,12 +1,13 @@
 const state = {
   user : {},
-  isAuthenticated: false,
+  isAuthenticated: !!localStorage.getItem('access_token'),
   token: localStorage.getItem('access_token') ? localStorage.getItem('access_token') : null
 };
 
 const mutations = {
   login(state, token) {
-    state.token = token
+    state.token = token;
+    state.isAuthenticated = true;
   },
 
   logout(state) {
@@ -21,7 +22,7 @@ const actions = {
     context.commit('login', token);
   },
 
-  logout(context, token) {
+  logout(context) {
     context.commit('logout');
   }
 };
