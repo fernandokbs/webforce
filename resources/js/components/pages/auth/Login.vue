@@ -49,7 +49,7 @@ export default({
 
   methods: {
     login() {
-      axios.post('/api/login', this.form)
+      axios.post('login', this.form)
         .then((response) => {
           let token = response.data.token;
           let user = response.data.user;

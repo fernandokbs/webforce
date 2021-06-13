@@ -2134,7 +2134,7 @@ __webpack_require__.r(__webpack_exports__);
     login: function login() {
       var _this = this;
 
-      _request__WEBPACK_IMPORTED_MODULE_0__.default.post('/api/login', this.form).then(function (response) {
+      _request__WEBPACK_IMPORTED_MODULE_0__.default.post('login', this.form).then(function (response) {
         var token = response.data.token;
         var user = response.data.user;
         localStorage.setItem('access_token', token);
@@ -2236,7 +2236,7 @@ __webpack_require__.r(__webpack_exports__);
     register: function register() {
       var _this = this;
 
-      _request__WEBPACK_IMPORTED_MODULE_0__.default.post('/api/register', this.form).then(function (response) {
+      _request__WEBPACK_IMPORTED_MODULE_0__.default.post('register', this.form).then(function (response) {
         _this.$router.push({
           path: 'login'
         });

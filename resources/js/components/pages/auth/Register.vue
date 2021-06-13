@@ -61,7 +61,7 @@ export default({
 
   methods: {
     register(){
-      axios.post('/api/register', this.form)
+      axios.post('register', this.form)
         .then((response) => {
           this.$router.push({ path: 'login' });
         }).catch((e) => {

@@ -4,3 +4,8 @@
 * php artisan generate:key
 * php artisan migrate --seed
 * php artisan serve
+* http://localhost:8000
+
+# default user
+admin@gmail.com
+testroot
