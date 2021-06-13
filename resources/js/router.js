@@ -7,6 +7,7 @@ Vue.use(VueRouter)
 import Home from './components/pages/Home';
 import Login from './components/pages/auth/Login';
 import Register from './components/pages/auth/Register';
+import ProductShow from './components/pages/ProductShow';
 
 // Admin routes
 import AdminHome from './components/pages/admin/AdminHome';
@@ -20,6 +21,7 @@ const routes = [
   { path: '/login', component: Login, name: 'login' },
   { path: '/register', component: Register, name: 'register' },
   { path: '/', component: Home, name: 'home' },
+  { path: '/:slug', component: ProductShow, name: 'product.show' },
 
   {
     path: '/admin',

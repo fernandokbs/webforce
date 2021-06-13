@@ -9,7 +9,7 @@
           <div class="card-body d-flex flex-column">
               <h5 class="card-title">{{ product.name }}</h5>
               <p class="card-text">{{ product.description }}</p>
-              <a href="#" class="btn btn-primary mt-auto">See full product</a>
+              <button @click="showProduct(product.slug)" class="btn btn-primary mt-auto">See full product</button>
           </div>
         </div>
       </div>
@@ -42,8 +42,8 @@ export default({
         });
     },
 
-    showProduct() {
-      
+    showProduct(productSlug) {
+      this.$router.push({ name: 'product.show', params: { slug: productSlug } });
     }
   },
 })
