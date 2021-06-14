@@ -11,6 +11,20 @@ router.beforeEach(async (to, from, next) => {
     // set the current user on every request
     await store.dispatch("auth/setUser");
 
+    // Check if route needs auth
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        
+    }
+
+    // Check if the route needs admin permission
+    if(to.matched.some(record => record.meta.requiresAdmin)) {
+        console.log("Admin is required");
+        if(store.getters['auth/isAdmin']) {
+            next();
+        } else {
+            next({ name: 'notfound' });
+        }
+    }
     
     next();
 });

@@ -8,6 +8,7 @@ import Home from './components/pages/Home';
 import Login from './components/pages/auth/Login';
 import Register from './components/pages/auth/Register';
 import ProductShow from './components/pages/ProductShow';
+import PageNotFound from './components/pages/errors/404';
 
 // Admin routes
 import AdminHome from './components/pages/admin/AdminHome';
@@ -32,20 +33,22 @@ const routes = [
     path: '/admin',
     component: AdminHome,
     name: 'admin',
+    meta: { requiresAuth: true, requiresAdmin: true },
     children: [
       {
         path: 'products',
-        component: ProductIndex,
-        meta: { requiresAuth: true }
+        component: ProductIndex
       },
       {
         path: 'products/new',
         component: ProductCreate,
-        name: 'products.new',
-        meta: { requiresAuth: true }
+        name: 'products.new'
       }
     ]
   },
+
+  { path: "/404", component: PageNotFound, name: 'notfound' },
+  { path: "*", redirect: "/404" }
 ];
 
 const router = new VueRouter({

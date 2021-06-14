@@ -38,6 +38,9 @@ export default{
           .then((response) => {
             this.product = response.data;
           }).catch((e) => {
+            if (e.response.status == 404) {
+              this.$router.push({ name: "notfound" });  
+            }
             console.log(e);
           });
       },
