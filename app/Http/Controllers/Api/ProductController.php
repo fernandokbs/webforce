@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -34,6 +35,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        Gate::authorize('product-action');
         return (new ProductResource( Product::create($request->all()) ))
                 ->response()
                 ->setStatusCode(Response::HTTP_CREATED);
@@ -59,6 +61,7 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
+        Gate::authorize('product-action');
         $product->update($request->all());
         return (new ProductResource( Product::find($product->id) ))
                 ->response()
@@ -73,6 +76,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        Gate::authorize('product-action');
         $product->delete();
         return response([], Response::HTTP_NO_CONTENT);
     }

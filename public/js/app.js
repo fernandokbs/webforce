@@ -2088,6 +2088,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../request */ "./resources/js/request.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2103,6 +2110,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2125,8 +2136,24 @@ __webpack_require__.r(__webpack_exports__);
     },
     addToCart: function addToCart() {
       this.$store.dispatch('cart/addToCart', 1);
+    },
+    deleteProduct: function deleteProduct(id) {
+      var _this2 = this;
+
+      _request__WEBPACK_IMPORTED_MODULE_0__.default.delete("products/".concat(id)).then(function (response) {
+        console.log(response);
+
+        _this2.$router.push({
+          name: "home"
+        });
+      })["catch"](function (e) {
+        console.log(e);
+      });
     }
-  }
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)({
+    isAdmin: 'auth/isAdmin'
+  }))
 });
 
 /***/ }),
@@ -40150,11 +40177,28 @@ var render = function() {
             _vm._v("created at: " + _vm._s(_vm.product.created_at))
           ]),
           _vm._v(" "),
-          _c(
-            "button",
-            { staticClass: "btn btn-success", on: { click: _vm.addToCart } },
-            [_vm._v("Add to card")]
-          )
+          _c("div", { staticClass: "d-flex justify-content-between" }, [
+            _c(
+              "button",
+              { staticClass: "btn btn-success", on: { click: _vm.addToCart } },
+              [_vm._v("Add to card")]
+            ),
+            _vm._v(" "),
+            _vm.isAdmin
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteProduct(_vm.product.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Delete product")]
+                )
+              : _vm._e()
+          ])
         ])
       ])
     ])

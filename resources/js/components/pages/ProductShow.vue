@@ -6,7 +6,10 @@
           <h5 class="card-title">{{ product.name }}</h5>
           <p class="card-text">{{ product.description }}</p>
           <p class="text-right">created at: {{ product.created_at }}</p>
-          <button @click="addToCart" class="btn btn-success">Add to card</button>
+          <div class="d-flex justify-content-between">
+            <button @click="addToCart" class="btn btn-success">Add to card</button>
+            <button v-if="isAdmin" @click="deleteProduct(product.id)" class="btn btn-danger">Delete product</button>
+          </div>
         </div>
       </div>
     </div>
@@ -16,6 +19,7 @@
 <script>
 
 import axios from '../../request';
+import { mapGetters } from 'vuex'
 
 export default{
     data(){
@@ -39,7 +43,23 @@ export default{
       },
       addToCart() {
         this.$store.dispatch('cart/addToCart', 1);
+      },
+
+      deleteProduct(id) {
+        axios.delete(`products/${id}`)
+          .then((response) => {
+            console.log(response);
+            this.$router.push({ name: "home" });
+          }).catch((e) => {
+            console.log(e);
+          });
       }
+    },
+
+    computed: {
+      ...mapGetters({
+        isAdmin: 'auth/isAdmin'
+      })
     }
 }
 </script>
