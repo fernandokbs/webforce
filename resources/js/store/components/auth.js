@@ -1,3 +1,5 @@
+import axios from '../../request';
+
 const state = {
   user : {},
   isAuthenticated: !!localStorage.getItem('access_token'),
@@ -9,6 +11,10 @@ const mutations = {
     state.token = token;
     state.isAuthenticated = true;
   },
+
+  setUser(state, user) {
+    state.user = user;
+  },  
 
   logout(state) {
     state.token = null;
@@ -22,6 +28,21 @@ const actions = {
     context.commit('login', token);
   },
 
+  setUser(context) {
+    if(state.isAuthenticated) {
+      return new Promise((resolve, reject) => {
+        axios.get('me')
+          .then(response => {
+              context.commit('setUser', response.data);
+              resolve(response)
+          })
+          .catch(error => {
+            reject(error)
+          })
+      })
+    }
+  },
+
   logout(context) {
     context.commit('logout');
   }
@@ -33,7 +54,7 @@ const getters = {
   },
 
   isAdmin(state) {
-    return state.isAdmin;
+    return state.user.admin;
   }
 }
 

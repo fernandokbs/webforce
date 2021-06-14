@@ -2386,9 +2386,13 @@ _router__WEBPACK_IMPORTED_MODULE_2__.default.beforeEach( /*#__PURE__*/function (
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
+            _context.next = 2;
+            return _store_store__WEBPACK_IMPORTED_MODULE_3__.default.dispatch("auth/setUser");
+
+          case 2:
             next();
 
-          case 1:
+          case 3:
           case "end":
             return _context.stop();
         }
@@ -2578,6 +2582,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../request */ "./resources/js/request.js");
+
 var state = {
   user: {},
   isAuthenticated: !!localStorage.getItem('access_token'),
@@ -2587,6 +2593,9 @@ var mutations = {
   login: function login(state, token) {
     state.token = token;
     state.isAuthenticated = true;
+  },
+  setUser: function setUser(state, user) {
+    state.user = user;
   },
   logout: function logout(state) {
     state.token = null;
@@ -2598,6 +2607,18 @@ var actions = {
   login: function login(context, token) {
     context.commit('login', token);
   },
+  setUser: function setUser(context) {
+    if (state.isAuthenticated) {
+      return new Promise(function (resolve, reject) {
+        _request__WEBPACK_IMPORTED_MODULE_0__.default.get('me').then(function (response) {
+          context.commit('setUser', response.data);
+          resolve(response);
+        })["catch"](function (error) {
+          reject(error);
+        });
+      });
+    }
+  },
   logout: function logout(context) {
     context.commit('logout');
   }
@@ -2607,7 +2628,7 @@ var getters = {
     return state.isAuthenticated !== false;
   },
   isAdmin: function isAdmin(state) {
-    return state.isAdmin;
+    return state.user.admin;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({

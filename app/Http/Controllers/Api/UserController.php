@@ -101,4 +101,14 @@ class UserController extends Controller
         
         return $user->createToken('mobile')->plainTextToken;
     }
+
+    /**
+     * Return current user
+     *
+     * @return \App\Models\User $user
+     */
+    public function me()
+    {
+        return new UserResource(auth()->user());
+    }
 }

@@ -8,6 +8,10 @@ import router from './router';
 import store from './store/store';
 
 router.beforeEach(async (to, from, next) => {
+    // set the current user on every request
+    await store.dispatch("auth/setUser");
+
+    
     next();
 });
 

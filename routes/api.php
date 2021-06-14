@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\ProductController;
 Route::middleware(['auth:sanctum', 'isAdmin'])->group(function() {
     Route::apiResource('products', ProductController::class)->except('index','show');
     Route::apiResource('users', UserController::class)->except('store');
+
+    Route::get('me', [UserController::class,'me']);
 }); 
 
 // Auth routes
