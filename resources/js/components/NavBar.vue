@@ -6,7 +6,7 @@
       </button>
       <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarTogglerDemo01">
           <div>
-            <a class="navbar-brand" href="/">WebForce HQ</a>
+            <router-link :to="{ name: 'home' }" class="navbar-brand">WebForce</router-link>
           </div>
           <div>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -33,6 +33,7 @@
 <script>
 
 import Cart from './Cart.vue';
+import { mapGetters } from 'vuex'
 
 export default ({
   components: {
@@ -43,9 +44,6 @@ export default ({
       
     }
   },
-  created() {
-    console.log(this.$store.getters['cart/getProducts']);
-  },  
   methods: {
     logout() {
       localStorage.removeItem('access_token');
@@ -55,9 +53,9 @@ export default ({
   },
 
   computed: {
-    isAuthenticated() {
-      return this.$store.getters['auth/isAuthenticated'];
-    },
+    ...mapGetters({
+      isAuthenticated: 'auth/isAuthenticated'
+    })
   }
 })
 </script>
