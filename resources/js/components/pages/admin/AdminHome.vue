@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <h2>Dasboard</h2>
+  <div class="container">
     <router-view></router-view>
   </div>
 </template>

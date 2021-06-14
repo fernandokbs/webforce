@@ -13,7 +13,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <template v-if="isAuthenticated && isAdmin">
                 <li class="nav-item">
-                  <router-link :to="{ name: 'register' }" class="nav-link active">Productos</router-link>
+                  <router-link :to="{ name: 'products.new' }" class="nav-link active">Products</router-link>
                 </li>
             </template>
 

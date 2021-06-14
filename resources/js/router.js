@@ -12,6 +12,7 @@ import ProductShow from './components/pages/ProductShow';
 // Admin routes
 import AdminHome from './components/pages/admin/AdminHome';
 import ProductIndex from './components/pages/admin/products/Index';
+import ProductCreate from './components/pages/admin/products/Create';
 
 // Client routes
 import ClientHome from './components/pages/client/Home';
@@ -35,6 +36,12 @@ const routes = [
       {
         path: 'products',
         component: ProductIndex,
+        meta: { requiresAuth: true }
+      },
+      {
+        path: 'products/new',
+        component: ProductCreate,
+        name: 'products.new',
         meta: { requiresAuth: true }
       }
     ]
