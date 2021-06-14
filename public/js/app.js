@@ -39642,7 +39642,7 @@ var render = function() {
         { staticClass: "nav-link active", attrs: { to: { name: "checkout" } } },
         [
           _c("i", { staticClass: "bi bi-cart" }),
-          _vm._v(" " + _vm._s(_vm.getItemsInCart) + "\n    ")
+          _vm._v(" " + _vm._s(_vm.getItemsInCart) + "\n  ")
         ]
       )
     ],
