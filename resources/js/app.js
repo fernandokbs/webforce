@@ -12,8 +12,8 @@ router.beforeEach(async (to, from, next) => {
     await store.dispatch("auth/setUser");
 
     // Check if route needs auth
-    if (to.matched.some(record => record.meta.requiresAuth)) {
-        
+    if ((to.path == "/login" || to.path == "/register") && store.getters['auth/isAuthenticated']) {
+        next({ name: 'home' })
     }
 
     // Check if the route needs admin permission

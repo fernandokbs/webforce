@@ -2550,9 +2550,11 @@ _router__WEBPACK_IMPORTED_MODULE_2__.default.beforeEach( /*#__PURE__*/function (
 
           case 2:
             // Check if route needs auth
-            if (to.matched.some(function (record) {
-              return record.meta.requiresAuth;
-            })) {} // Check if the route needs admin permission
+            if ((to.path == "/login" || to.path == "/register") && _store_store__WEBPACK_IMPORTED_MODULE_3__.default.getters["auth/isAuthenticated"]) {
+              next({
+                name: 'home'
+              });
+            } // Check if the route needs admin permission
 
 
             if (to.matched.some(function (record) {
