@@ -1,6 +1,6 @@
 <template>
   <li class="nav-item">
-    <router-link :to="{ name: 'checkout' }" class="nav-link active">
+    <router-link @click="redirectToCheckout" :to="{ name: 'checkout' }" class="nav-link active">
         <i class="bi bi-cart"></i> {{ getItemsInCart.length }}
     </router-link>
   </li>
@@ -15,6 +15,11 @@ export default {
     ...mapGetters({
       getItemsInCart: 'cart/getCart'
     })
+  },
+  methods: {
+    redirectToCheckout() {
+      this.$router.push({ name: "checkout" });
+    }
   }
 }
 </script>

@@ -15,9 +15,6 @@ import AdminHome from './components/pages/admin/AdminHome';
 import ProductIndex from './components/pages/admin/products/Index';
 import ProductCreate from './components/pages/admin/products/Create';
 
-// Client routes
-import ClientHome from './components/pages/client/Home';
-
 // Checkout
 import Checkout from './components/pages/Checkout';
 
