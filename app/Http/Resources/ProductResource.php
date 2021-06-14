@@ -20,7 +20,7 @@ class ProductResource extends JsonResource
             'slug' => $this->slug,
             'description' => $this->description,
             'created_at' => $this->created_at->diffForHumans(),
-            'thumbnail' => $this->getFirstMediaUrl("images")
+            'thumbnail' => $this->getMedia("images")->count() == 0 ? "https://picsum.photos/550/600" : $this->getFirstMediaUrl("images")
         ];
     }
 }
