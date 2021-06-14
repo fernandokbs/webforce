@@ -7,8 +7,7 @@
         <div class="card" style="width: 18rem;">
           <img :src="product.thumbnail" class="card-img-top" alt="preview">
           <div class="card-body d-flex flex-column">
-              <h5 class="card-title">{{ product.name }}</h5>
-              <p class="card-text">{{ product.description }}</p>
+              <h5 class="card-title">{{ product.name }}: ${{ product.price }}</h5>
               <button @click="showProduct(product.slug)" class="btn btn-primary mt-auto">See full product</button>
           </div>
         </div>

@@ -2054,7 +2054,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -40398,11 +40397,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "card-body d-flex flex-column" }, [
                   _c("h5", { staticClass: "card-title" }, [
-                    _vm._v(_vm._s(product.name))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v(_vm._s(product.description))
+                    _vm._v(_vm._s(product.name) + ": $" + _vm._s(product.price))
                   ]),
                   _vm._v(" "),
                   _c(
