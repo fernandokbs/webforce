@@ -1965,6 +1965,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2214,20 +2216,14 @@ __webpack_require__.r(__webpack_exports__);
 
       _request__WEBPACK_IMPORTED_MODULE_0__.default.post('login', this.form).then(function (response) {
         var token = response.data.token;
-        var user = response.data.user;
         localStorage.setItem('access_token', token);
-        localStorage.setItem('access_token', user);
 
-        _this.$store.dispatch('auth/login', {
-          'token': token,
-          'user': user
-        });
+        _this.$store.dispatch('auth/login', token);
 
         _this.$router.push({
           name: "home"
         });
       })["catch"](function (e) {
-        console.log(e);
         if (e.response.status === 422) _this.getErrors(e.response.data.errors);
       });
     },
@@ -2588,10 +2584,7 @@ var state = {
   token: localStorage.getItem('access_token') ? localStorage.getItem('access_token') : null
 };
 var mutations = {
-  login: function login(state, _ref) {
-    var token = _ref.token,
-        user = _ref.user;
-    state.user = user;
+  login: function login(state, token) {
     state.token = token;
     state.isAuthenticated = true;
   },
@@ -2602,13 +2595,8 @@ var mutations = {
   }
 };
 var actions = {
-  login: function login(context, _ref2) {
-    var token = _ref2.token,
-        user = _ref2.user;
-    context.commit('login', {
-      token: token,
-      user: user
-    });
+  login: function login(context, token) {
+    context.commit('login', token);
   },
   logout: function logout(context) {
     context.commit('logout');
@@ -2618,8 +2606,8 @@ var getters = {
   isAuthenticated: function isAuthenticated(state) {
     return state.isAuthenticated !== false;
   },
-  isAdmin: function isAdmin() {
-    return state.user.admin;
+  isAdmin: function isAdmin(state) {
+    return state.isAdmin;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -39732,6 +39720,26 @@ var render = function() {
                 "ul",
                 { staticClass: "navbar-nav me-auto mb-2 mb-lg-0" },
                 [
+                  _vm.isAuthenticated && _vm.isAdmin
+                    ? [
+                        _c(
+                          "li",
+                          { staticClass: "nav-item" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link active",
+                                attrs: { to: { name: "register" } }
+                              },
+                              [_vm._v("Productos")]
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    : _vm._e(),
+                  _vm._v(" "),
                   !_vm.isAuthenticated
                     ? [
                         _c(
@@ -39761,26 +39769,6 @@ var render = function() {
                                 attrs: { to: { name: "register" } }
                               },
                               [_vm._v("Register")]
-                            )
-                          ],
-                          1
-                        )
-                      ]
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.isAdmin
-                    ? [
-                        _c(
-                          "li",
-                          { staticClass: "nav-item" },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "nav-link active",
-                                attrs: { to: { name: "register" } }
-                              },
-                              [_vm._v("Productos")]
                             )
                           ],
                           1

@@ -5,8 +5,7 @@ const state = {
 };
 
 const mutations = {
-  login(state, { token, user }) {
-    state.user = user;
+  login(state, token) {
     state.token = token;
     state.isAuthenticated = true;
   },
@@ -19,8 +18,8 @@ const mutations = {
 };
 
 const actions = {
-  login(context, { token, user }) {
-    context.commit('login', { token, user });
+  login(context, token) {
+    context.commit('login', token);
   },
 
   logout(context) {
@@ -33,8 +32,8 @@ const getters = {
     return state.isAuthenticated !== false;
   },
 
-  isAdmin() {
-    return state.user.admin;
+  isAdmin(state) {
+    return state.isAdmin;
   }
 }
 

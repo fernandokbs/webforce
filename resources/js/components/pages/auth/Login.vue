@@ -52,13 +52,10 @@ export default({
       axios.post('login', this.form)
         .then((response) => {
           let token = response.data.token;
-          let user = response.data.user;
           localStorage.setItem('access_token', token);
-          localStorage.setItem('access_token', user);
-          this.$store.dispatch('auth/login', { 'token': token, 'user': user });
+          this.$store.dispatch('auth/login', token);
           this.$router.push({ name: "home" });
         }).catch((e) => {
-          console.log(e);
           if(e.response.status === 422)
             this.getErrors(e.response.data.errors);
         });

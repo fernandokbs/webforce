@@ -8,8 +8,15 @@
           <div>
             <router-link :to="{ name: 'home' }" class="navbar-brand">WebForce</router-link>
           </div>
+
           <div>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <template v-if="isAuthenticated && isAdmin">
+                <li class="nav-item">
+                  <router-link :to="{ name: 'register' }" class="nav-link active">Productos</router-link>
+                </li>
+            </template>
+
               <template v-if="!isAuthenticated">
                 <li class="nav-item">
                   <router-link :to="{ name: 'login' }" class="nav-link active">Login</router-link>
@@ -17,12 +24,6 @@
                 <li class="nav-item">
                   <router-link :to="{ name: 'register' }" class="nav-link active">Register</router-link>
                 </li>
-              </template>
-
-              <template v-if="isAdmin">
-                  <li class="nav-item">
-                    <router-link :to="{ name: 'register' }" class="nav-link active">Productos</router-link>
-                  </li>
               </template>
 
               <cart></cart>
@@ -40,6 +41,7 @@
 
 import Cart from './Cart.vue';
 import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default ({
   components: {
@@ -50,7 +52,6 @@ export default ({
       
     }
   },
-
   methods: {
     logout() {
       localStorage.removeItem('access_token');
