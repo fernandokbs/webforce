@@ -28,6 +28,11 @@
             </div>
 
             <div class="mb-3">
+              <label for="productThumbnail" class="form-label">Thumbnail</label>
+              <input @change="uploadImage($event)" type="file" class="form-control" id="productThumbnail" placeholder="Price">
+            </div>
+
+            <div class="mb-3">
               <div class="row justify-content-center">
                 <div class="col-sm-12 d-grid gap-2">
                   <button @click="submit" class="btn btn-primary">Login</button>
@@ -58,15 +63,29 @@ export default {
     }
   },
   methods: {
-    submit(){
-      axios.post('products', this.form)
+    submit() {
+      let formData = new FormData()
+      formData.append('name', this.form.name);
+      formData.append('description', this.form.description);
+      formData.append('price', this.form.price);
+      formData.append('thumbnail', this.form.thumbnail);
+
+      axios.post('products', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
         .then((response) => {
-          console.log(response);
+          this.$router.push({ name: "home" });
         }).catch((e) => {
           if(e.response.status === 422)
             this.getErrors(e.response.data.errors);
         });
     },
+
+  uploadImage(e) {
+    this.form.thumbnail = e.currentTarget.files[0];
+  },
 
     getErrors(errors) {
         this.errors = [];

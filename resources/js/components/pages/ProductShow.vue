@@ -48,7 +48,6 @@ export default{
       deleteProduct(id) {
         axios.delete(`products/${id}`)
           .then((response) => {
-            console.log(response);
             this.$router.push({ name: "home" });
           }).catch((e) => {
             console.log(e);

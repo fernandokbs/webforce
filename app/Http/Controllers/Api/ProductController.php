@@ -36,7 +36,12 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         Gate::authorize('product-action');
-        return (new ProductResource( Product::create($request->all()) ))
+        $product = Product::create($request->all());
+
+        if($request->hasFile('thumbnail'))
+            $product->addMedia($request->file('thumbnail'))->toMediaCollection('images');
+
+        return (new ProductResource( $product ))
                 ->response()
                 ->setStatusCode(Response::HTTP_CREATED);
     }

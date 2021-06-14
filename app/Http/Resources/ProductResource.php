@@ -19,7 +19,8 @@ class ProductResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'description' => $this->description,
-            'created_at' => $this->created_at->diffForHumans()
+            'created_at' => $this->created_at->diffForHumans(),
+            'thumbnail' => $this->getFirstMediaUrl("images")
         ];
     }
 }

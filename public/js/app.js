@@ -2141,8 +2141,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       _request__WEBPACK_IMPORTED_MODULE_0__.default.delete("products/".concat(id)).then(function (response) {
-        console.log(response);
-
         _this2.$router.push({
           name: "home"
         });
@@ -2234,6 +2232,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2251,11 +2254,25 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var _this = this;
 
-      _request__WEBPACK_IMPORTED_MODULE_0__.default.post('products', this.form).then(function (response) {
-        console.log(response);
+      var formData = new FormData();
+      formData.append('name', this.form.name);
+      formData.append('description', this.form.description);
+      formData.append('price', this.form.price);
+      formData.append('thumbnail', this.form.thumbnail);
+      _request__WEBPACK_IMPORTED_MODULE_0__.default.post('products', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        _this.$router.push({
+          name: "home"
+        });
       })["catch"](function (e) {
         if (e.response.status === 422) _this.getErrors(e.response.data.errors);
       });
+    },
+    uploadImage: function uploadImage(e) {
+      this.form.thumbnail = e.currentTarget.files[0];
     },
     getErrors: function getErrors(errors) {
       var _this2 = this;
@@ -40375,6 +40392,31 @@ var render = function() {
                       return
                     }
                     _vm.$set(_vm.form, "price", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "mb-3" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "form-label",
+                  attrs: { for: "productThumbnail" }
+                },
+                [_vm._v("Thumbnail")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "file",
+                  id: "productThumbnail",
+                  placeholder: "Price"
+                },
+                on: {
+                  change: function($event) {
+                    return _vm.uploadImage($event)
                   }
                 }
               })
