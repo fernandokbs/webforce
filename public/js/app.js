@@ -1959,6 +1959,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1978,7 +1984,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)({
-    isAuthenticated: 'auth/isAuthenticated'
+    isAuthenticated: 'auth/isAuthenticated',
+    isAdmin: 'auth/isAdmin'
   }))
 });
 
@@ -2211,7 +2218,10 @@ __webpack_require__.r(__webpack_exports__);
         localStorage.setItem('access_token', token);
         localStorage.setItem('access_token', user);
 
-        _this.$store.dispatch('auth/login', token, user);
+        _this.$store.dispatch('auth/login', {
+          'token': token,
+          'user': user
+        });
 
         _this.$router.push({
           name: "home"
@@ -2578,7 +2588,9 @@ var state = {
   token: localStorage.getItem('access_token') ? localStorage.getItem('access_token') : null
 };
 var mutations = {
-  login: function login(state, token, user) {
+  login: function login(state, _ref) {
+    var token = _ref.token,
+        user = _ref.user;
     state.user = user;
     state.token = token;
     state.isAuthenticated = true;
@@ -2590,8 +2602,13 @@ var mutations = {
   }
 };
 var actions = {
-  login: function login(context, token, user) {
-    context.commit('login', token, user);
+  login: function login(context, _ref2) {
+    var token = _ref2.token,
+        user = _ref2.user;
+    context.commit('login', {
+      token: token,
+      user: user
+    });
   },
   logout: function logout(context) {
     context.commit('logout');
@@ -39744,6 +39761,26 @@ var render = function() {
                                 attrs: { to: { name: "register" } }
                               },
                               [_vm._v("Register")]
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.isAdmin
+                    ? [
+                        _c(
+                          "li",
+                          { staticClass: "nav-item" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link active",
+                                attrs: { to: { name: "register" } }
+                              },
+                              [_vm._v("Productos")]
                             )
                           ],
                           1

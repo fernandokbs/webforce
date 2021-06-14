@@ -5,7 +5,7 @@ const state = {
 };
 
 const mutations = {
-  login(state, token, user) {
+  login(state, { token, user }) {
     state.user = user;
     state.token = token;
     state.isAuthenticated = true;
@@ -19,8 +19,8 @@ const mutations = {
 };
 
 const actions = {
-  login(context, token, user) {
-    context.commit('login', token, user);
+  login(context, { token, user }) {
+    context.commit('login', { token, user });
   },
 
   logout(context) {

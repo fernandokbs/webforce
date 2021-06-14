@@ -19,6 +19,12 @@
                 </li>
               </template>
 
+              <template v-if="isAdmin">
+                  <li class="nav-item">
+                    <router-link :to="{ name: 'register' }" class="nav-link active">Productos</router-link>
+                  </li>
+              </template>
+
               <cart></cart>
 
               <li v-if="isAuthenticated" class="nav-item">
@@ -44,6 +50,7 @@ export default ({
       
     }
   },
+
   methods: {
     logout() {
       localStorage.removeItem('access_token');
@@ -54,7 +61,8 @@ export default ({
 
   computed: {
     ...mapGetters({
-      isAuthenticated: 'auth/isAuthenticated'
+      isAuthenticated: 'auth/isAuthenticated',
+      isAdmin: 'auth/isAdmin'
     })
   }
 })
