@@ -7,9 +7,7 @@
         <div class="card-body">
 
             <div v-if="errors.length" class="alert alert-danger" role="alert">
-              <ul>
-                <li v-for="e in errors">{{ e }}</li>
-              </ul>
+              <ul><li v-for="e in errors">{{ e }}</li></ul>
             </div>
 
             <div class="mb-3">
@@ -48,6 +46,7 @@
 
 <script>
 
+import Errors from '../../../Errors.vue';
 import axios from '../../../../request';
 
 export default {
