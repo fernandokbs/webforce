@@ -20,11 +20,12 @@ import Checkout from './components/pages/Checkout';
 
 const routes = [
   // Auth components
+  { path: '/', component: Home, name: 'home' },
   { path: '/login', component: Login, name: 'login' },
   { path: '/register', component: Register, name: 'register' },
-  { path: '/', component: Home, name: 'home' },
-  { path: '/:slug', component: ProductShow, name: 'product.show' },
+
   { path: '/checkout', component: Checkout, name: 'checkout' },
+  { path: '/:slug', component: ProductShow, name: 'product.show' },
 
   {
     path: '/admin',
