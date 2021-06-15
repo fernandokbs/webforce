@@ -2,8 +2,8 @@
 
 * composer install
 * cp .env-example .env
-* php artisan generate:key
-* CREATE DATABASE webforce
+* php artisan key:generate
+* CREATE DATABASE webforce;
 * php artisan migrate --seed
 * php artisan storage:link
 * php artisan serve
