@@ -9,7 +9,6 @@ use App\Http\Controllers\Api\OrderController;
 Route::middleware(['auth:sanctum', 'isAdmin'])->group(function() {
     Route::apiResource('products', ProductController::class)->except('index','show');
     Route::apiResource('users', UserController::class)->except('store');
-    Route::apiResource('orders', OrderController::class)->only('store');
 
     Route::get('me', [UserController::class,'me']);
 }); 
@@ -21,3 +20,6 @@ Route::post('register',[UserController::class, 'register']);
 // Product path
 Route::get('products', [ProductController::class, 'index']);
 Route::get('products/{product:slug}', [ProductController::class, 'show']);
+
+// orders path
+Route::apiResource('orders', OrderController::class)->only('store');
